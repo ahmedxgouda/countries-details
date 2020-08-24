@@ -7,7 +7,7 @@ body {
     --grid-min-size: 16rem;
     padding: 1% 5%;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(var(--grid-min-size), 0.9fr));
+    grid-template-columns: repeat(auto-fill, minmax(var(--grid-min-size), 1fr));
     grid-gap: 3rem;
     justify-content: center;
 
@@ -61,7 +61,7 @@ body {
     transition: background-color 0.3s;
 
         .text {
-            padding: 4% 1% 15% 10%;
+            padding: 4% 2% 15% 10%;
             color: var(--text);
             transition: color 0.3s;
 
@@ -202,14 +202,9 @@ body {
     }
 }
 
-@media screen and (max-width: 637px) {
+@media screen and (max-width: 673px) {
     .container {
-        --grid-min-size: 13rem;
-    }
-}
-
-@media screen and (max-width: 530px) {
-    .filters {
-        justify-content: center;
+        display: flex;
+        flex-direction: column;
     }
 }

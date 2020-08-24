@@ -6,7 +6,7 @@ export const fetchCountries = () => dispatch => {
     dispatch(countriesLoading(true));
     axios.get(baseUrl)
         .then(response => dispatch(addCountries(response.data.filter(country => {
-            return country.name !== 'Israel' && country.name === 'Palestine, State of' ? country.name = 'Palestine' : country.name;
+            return country.name === 'Palestine, State of' ? country.name = 'Palestine' : country.name !== 'Israel';
         }))))
         .catch(error => dispatch(countriesFailed(error.message)));
 }

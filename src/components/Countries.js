@@ -93,25 +93,25 @@ class Countries extends Component {
                 <List isLoading={this.props.isLoading}
                     errMess={this.props.errMess}
                     countries={this.props.countries.filter(country => {
-                        const stateName =  this.state.name.trim().toLowerCase().split('');
+                        const stateName =  this.state.name.trim().toLowerCase();
                         // const stateRegion = this.state.region.toLowerCase();
-                        const countryName = country.name.toLowerCase().split('');
+                        const countryName = country.name.trim().toLowerCase();
 
-                        const nameExists = stateName.every(char => countryName.includes(char));
                         const nameNotExist = this.state.name === '';
                         const regionNotExists = this.state.region === '';
+            
+                        const nameExists = countryName.includes(stateName);
 
-                        const checkIfNameMatches = stateName.length === 1 ? nameExists && countryName[0] === stateName[0] : stateName.length === 2 ? nameExists && (countryName[0] === stateName[0] && countryName[1] === stateName[1]) : stateName.length >= 3 ?  nameExists && (countryName[0] === stateName[0] && countryName[1] === stateName[1] && countryName[2] === stateName[2]) : nameExists;
+                        const findAlpha2Code = stateName === country.alpha2Code.trim().toLowerCase();
+                        const findAlpha3Code = stateName === country.alpha3Code.trim().toLowerCase();
 
-                        const find2AlphaCode = this.state.name.toLowerCase() === country.alpha2Code.toLowerCase();
-
-                        const find3AlphaCode = this.state.name.toLowerCase() === country.alpha3Code.toLowerCase();
+                        const checkIfNameMatches = nameExists || findAlpha2Code || findAlpha3Code;
 
                         if (nameNotExist && regionNotExists) {
                             return country;
 
                         } else if (!nameNotExist && regionNotExists) {
-                            return checkIfNameMatches || find2AlphaCode || find3AlphaCode;
+                            return checkIfNameMatches;
                         }
                     })}
                     state={this.state}
