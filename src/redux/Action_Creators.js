@@ -5,7 +5,9 @@ import baseUrl from '../shared/baseUrl';
 export const fetchCountries = () => dispatch => {
     dispatch(countriesLoading(true));
     axios.get(baseUrl)
-        .then(response => dispatch(addCountries(response.data.filter(country => country.name !== 'Israel'))))
+        .then(response => dispatch(addCountries(response.data.filter(country => {
+            return country.name !== 'Israel' && country.name === 'Palestine, State of' ? country.name = 'Palestine' : country.name;
+        }))))
         .catch(error => dispatch(countriesFailed(error.message)));
 }
 

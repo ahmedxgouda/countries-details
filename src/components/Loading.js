@@ -37,8 +37,6 @@ const Loading = () => {
                     animate="end"
                     transition={loadingCircleTransition} />
                 </motion.section>
-
-                <p>Loading...</p>
             </motion.section>
         </section>
     );

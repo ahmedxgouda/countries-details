@@ -5,10 +5,30 @@ body {
 
 .container {
     --grid-min-size: 16rem;
-    padding: 4% 5%;
+    padding: 1% 5%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(var(--grid-min-size), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(var(--grid-min-size), 0.9fr));
     grid-gap: 3rem;
+    justify-content: center;
+
+    &.container-filter {
+        display: block;
+        padding: 3% 5%;
+    }
+
+    &.container-pagination {
+        display: flex;
+        padding: 1%;
+    }
+
+    &.container-no-match {
+        display: flex;
+
+        p {
+            color: var(--text);
+            font-size: 25px;
+        }
+    }
 }
 
 .header {
@@ -37,7 +57,7 @@ body {
     flex-direction: column;
     background: var(--elements);
     border-radius: 10px;
-    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s;
 
         .text {
@@ -71,6 +91,8 @@ body {
 
 }
 
+// Loading component
+
 .container-loading {
     display: flex;
     height: 75vh;
@@ -87,10 +109,6 @@ body {
         justify-content: space-around;
     }
     
-    p {
-        color: #FE5F55;
-    }
-
     .loading-circle {
         display: block;
         width: 1rem;
@@ -102,10 +120,6 @@ body {
 
 //  Pagination
 
-.container.container-pagination {
-    display: flex;
-    padding: 1%;
-}
 .pagination {
     list-style: none;
     display: flex;
@@ -144,8 +158,58 @@ body {
     }
 }
 
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+
+    .search {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        flex-grow: 0.2;
+    }
+
+    svg {
+        position: absolute;
+        top: 17px;
+        left: 15px;
+
+        path {
+            fill: var(--input);
+            transition: fill 0.3s;
+        }
+    }
+    input {
+        background: var(--elements);
+        color: var(--input);
+        border: 2px solid var(--elements);
+        outline: none;
+        padding: 15px 30px 15px 50px;
+        border-radius: 5px;
+        width: 100%;
+        font-size: 14px;
+        transition: color 0.3s, background-color 0.3s, border-color 0.1s ease-in;
+        box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+
+        &::placeholder {
+            color: var(--input);
+        }
+
+        &:focus {
+            border-color: var(--focused);
+        }
+    }
+}
+
 @media screen and (max-width: 637px) {
     .container {
         --grid-min-size: 13rem;
+    }
+}
+
+@media screen and (max-width: 530px) {
+    .filters {
+        justify-content: center;
     }
 }

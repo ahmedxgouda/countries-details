@@ -18,17 +18,23 @@ class Header extends Component {
     }
 
     checkIfChecked = (element) => {
+
+        const root = document.documentElement;
         if (element.checked) {
-            document.documentElement.style.setProperty('--bg', 'hsl(207, 26%, 17%)');
-            document.documentElement.style.setProperty('--elements', 'hsl(209, 23%, 22%)');
-            document.documentElement.style.setProperty('--text', 'hsl(0, 0%, 100%)');
-            document.documentElement.style.setProperty('--btn', '#17183B');
+            root.style.setProperty('--bg', 'hsl(207, 26%, 17%)');
+            root.style.setProperty('--elements', 'hsl(209, 23%, 22%)');
+            root.style.setProperty('--text', 'hsl(0, 0%, 100%)');
+            root.style.setProperty('--btn', '#17183B');
+            root.style.setProperty('--input', 'hsl(0, 0%, 100%)');
+            root.style.setProperty('--focused', '#3E505B');
 
         } else {
-            document.documentElement.style.setProperty('--bg', 'hsl(0, 0%, 98%)');
-            document.documentElement.style.setProperty('--elements', 'hsl(0, 0%, 100%)');
-            document.documentElement.style.setProperty('--text', 'hsl(200, 15%, 8%)');
-            document.documentElement.style.setProperty('--btn', '#A0C1B9');
+            root.style.setProperty('--bg', 'hsl(0, 0%, 98%)');
+            root.style.setProperty('--elements', 'hsl(0, 0%, 100%)');
+            root.style.setProperty('--text', 'hsl(200, 15%, 8%)');
+            root.style.setProperty('--btn', '#A0C1B9');
+            root.style.setProperty('--input', 'hsl(0, 0%, 52%)');
+            root.style.setProperty('--focused', '#C9E4CA');
         }
     }
 
