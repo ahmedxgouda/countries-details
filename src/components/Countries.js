@@ -2,25 +2,30 @@ import React, { Component } from 'react';
 import ReactPaginate from 'react-paginate';
 import Loading from './Loading';
 import Filters from './Filters';
+import { Link } from 'react-router-dom';
 
 const RenderCountry = ({countries, state}) => {
     return (
         <>
             {countries.length === 0 ? (
-                <p>Sorry, no countries found match <i><strong>{state.name}</strong></i> {state.region !== '' ? (<>in {state.region}</>) : null}</p>
+                <p>Sorry, no countries found match <strong>{state.name}</strong> {state.region !== '' ? (<>in {state.region}</>) : null}</p>
             ) : null}
             {countries.slice(state.offset, state.offset + state.perPage).map(country => (
-                <section className="box" key={country.name}>
-                    <section className="img" style={{backgroundImage: `url(${country.flag})`}} />
-                    <section className="text">
-                        <h3>{country.name}</h3>
-                        {country.population ? (<p>Population: <span>{country.population.toLocaleString()}</span></p>) : null}
+                
+                    <section className="box" key={country.name}>
+                        <Link to={`/home/${country.alpha3Code}`}>
+                        <section className="img" style={{backgroundImage: `url(${country.flag})`}} />
+                        <section className="text">
+                            <h3>{country.name}</h3>
+                            {country.population ? (<p>Population: <span>{country.population.toLocaleString()}</span></p>) : null}
 
-                        {country.region ? (<p>Region: <span>{country.region}</span></p>) : null}
+                            {country.region ? (<p>Region: <span>{country.region}</span></p>) : null}
 
-                        {country.capital ? (<p>Capital: <span>{country.capital}</span></p>) : null}
-                    </section>
-                </section>                    
+                            {country.capital ? (<p>Capital: <span>{country.capital}</span></p>) : null}
+                        </section>
+                        </Link>
+                    </section>   
+                        
             ))}
         </>
     );
@@ -53,6 +58,7 @@ const List = (props) => {
                         breakLabel={'...'}
                         breakClassName={'break'}
                         pageCount={Math.ceil(props.countries.length / props.state.perPage)}
+                        forcePage={props.state.currentPage}
                         marginPagesDisplayed={2}
                         pageRangeDisplayed={5}
                         onPageChange={props.handlePageClick}
@@ -94,11 +100,11 @@ class Countries extends Component {
     }
 
     changeName = (value) => {
-        this.setState({name: value});
+        this.setState({name: value, offset: 0, currentPage: 0});
     }
 
     changeRegion = (value) => {
-        this.setState({region: value});
+        this.setState({region: value, offset: 0, currentPage: 0});
     }
 
     handlePageClick = (e) => {

@@ -7,7 +7,7 @@ body {
     --grid-min-size: 16rem;
     padding: 1% 5%;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(var(--grid-min-size), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(var(--grid-min-size), 0.8fr));
     grid-gap: 3rem;
     justify-content: center;
 
@@ -261,7 +261,13 @@ body {
     }
 }
 
-@media screen and (max-width: 673px) {
+// Details page
+
+a {
+    text-decoration: none;
+}
+
+@media screen and (max-width: 505px) {
     .container {
         display: flex;
         flex-direction: column;
@@ -270,6 +276,6 @@ body {
 
 @media screen and (max-width: 748px) {
     .filters .select {
-        margin-top: 10px;
+        margin: 30px auto 20px 0;
     }
 }
