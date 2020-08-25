@@ -46,8 +46,7 @@ body {
         user-select: none;
         cursor: pointer;
         input {
-            width: 0;
-            height: 0;
+            display: none;
         }
     }
 }
@@ -167,19 +166,22 @@ body {
         position: relative;
         display: flex;
         flex-wrap: wrap;
-        flex-grow: 0.2;
-    }
+        width: 400px;
+        margin: 0 10px 0 0;
 
-    svg {
-        position: absolute;
-        top: 17px;
-        left: 15px;
-
-        path {
-            fill: var(--input);
-            transition: fill 0.3s;
+        svg {
+            position: absolute;
+            top: 17px;
+            left: 15px; 
         }
+
     }
+
+    path {
+        fill: var(--input);
+        transition: fill 0.3s;
+    }
+
     input {
         background: var(--elements);
         color: var(--input);
@@ -200,11 +202,74 @@ body {
             border-color: var(--focused);
         }
     }
+
+    .select {
+        position: relative;
+        background: var(--elements);
+        color: var(--text);
+        margin: 0 0 0 auto;
+        border-radius: 6px;
+        display: flex;
+        width: 250px;
+        box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+
+        .selected {
+            align-self: center;
+            padding: 15px 75px 15px 22px;
+            width: 100%;
+            position: relative;
+
+            svg {
+                position: absolute;
+                right: 16px;
+                top: 18px;
+            }
+        }
+
+        & .selected, .list li {
+            user-select: none;
+            cursor: pointer;
+        }
+
+        .list {
+            position: absolute;
+            top: 58px;
+            left: 0px;
+            width: 100%;
+            display: block;
+            background: var(--elements);
+            border-radius: 5px;
+            box-shadow: inherit;
+            transform-origin: center top;
+            transition: transform 0.3s;
+
+            ul {
+                padding: 0;
+                list-style: none;
+                margin: 0;
+
+                li {
+                    padding: 10px 0 10px 22px;
+                    transition: background-color 0.3s;
+
+                    &:hover {
+                        background: var(--focused);
+                    }
+                }
+            }
+        }
+    }
 }
 
 @media screen and (max-width: 673px) {
     .container {
         display: flex;
         flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 748px) {
+    .filters .select {
+        margin-top: 10px;
     }
 }

@@ -7,7 +7,7 @@ const RenderCountry = ({countries, state}) => {
     return (
         <>
             {countries.length === 0 ? (
-                <p>Sorry, no countries found match <i><strong>{state.name}</strong></i></p>
+                <p>Sorry, no countries found match <i><strong>{state.name}</strong></i> {state.region !== '' ? (<>in {state.region}</>) : null}</p>
             ) : null}
             {countries.slice(state.offset, state.offset + state.perPage).map(country => (
                 <section className="box" key={country.name}>
@@ -27,7 +27,10 @@ const RenderCountry = ({countries, state}) => {
 }
 
 const List = (props) => {
-    if (props.isLoading) return (
+    if (props.isDataLoading) return (
+        <Loading />
+    );
+    else if (props.isComponentLoading) return (
         <Loading />
     );
     else if (props.errMess) return (
@@ -35,11 +38,15 @@ const List = (props) => {
     );
     else return (
         <>
-            <Filters changeName={props.changeName} />
+            <Filters changeName={props.changeName} 
+            changeRegion={props.changeRegion}
+            region={props.region}
+            isOpen={props.isOpen} 
+            handleOpen={props.handleOpen} />
             <section className={`container${props.countries.length === 0 ? ' container-no-match' : ''}`}>
                 <RenderCountry countries={props.countries} state={props.state} />
             </section>
-            {props.countries.length !== 0 ? (
+            {props.countries.length > 12 ? (
                 <section className="container container-pagination">
                     <ReactPaginate previousLabel={'Prev'}
                         nextLabel={'Next'}
@@ -68,12 +75,30 @@ class Countries extends Component {
             perPage: 12,
             currentPage: 0,
             name: '',
-            region: ''
+            region: '',
+            isLoading: true,
+            isOpen: false
         }
+    }
+
+    componentDidMount() {
+        this.setState({
+            isLoading: false
+        })
+    }
+
+    handleOpen = () => {
+        this.setState({
+            isOpen: !this.state.isOpen
+        });
     }
 
     changeName = (value) => {
         this.setState({name: value});
+    }
+
+    changeRegion = (value) => {
+        this.setState({region: value});
     }
 
     handlePageClick = (e) => {
@@ -90,7 +115,8 @@ class Countries extends Component {
 
         return (
             <>
-                <List isLoading={this.props.isLoading}
+                <List isComponentLoading={this.state.isLoading}
+                    isDataLoading={this.props.isLoading}
                     errMess={this.props.errMess}
                     countries={this.props.countries.filter(country => {
                         const stateName =  this.state.name.trim().toLowerCase();
@@ -107,15 +133,27 @@ class Countries extends Component {
 
                         const checkIfNameMatches = nameExists || findAlpha2Code || findAlpha3Code;
 
+                        const checkIfRegionMatches = this.state.region === country.region;
+
                         if (nameNotExist && regionNotExists) {
                             return country;
 
                         } else if (!nameNotExist && regionNotExists) {
                             return checkIfNameMatches;
+
+                        } else if (!regionNotExists && nameNotExist) {
+                            return checkIfRegionMatches;
+                            
+                        } else {
+                            return checkIfRegionMatches && checkIfNameMatches;
                         }
                     })}
                     state={this.state}
                     changeName={this.changeName}
+                    changeRegion={this.changeRegion}
+                    region={this.state.region}
+                    isOpen={this.state.isOpen}
+                    handleOpen={this.handleOpen}
                     handlePageClick={this.handlePageClick} />
             </>
         );
