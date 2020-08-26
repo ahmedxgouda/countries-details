@@ -15,15 +15,15 @@ const RenderCountry = ({countries, state}) => {
                 
                     <section className="box" key={country.name}>
                         <Link to={`/home/${country.alpha3Code}`}>
-                        <section className="img" style={{backgroundImage: `url(${country.flag})`}} />
-                        <section className="text">
-                            <h3>{country.name}</h3>
-                            {country.population ? (<p>Population: <span>{country.population.toLocaleString()}</span></p>) : null}
+                            <section className="img" style={{backgroundImage: `url(${country.flag})`}} />
+                            <section className="text">
+                                <h3>{country.name}</h3>
+                                <p>Population: {country.population ? (<span>{country.population.toLocaleString()}</span>) : (<i>No informations found</i>)}</p>
 
-                            {country.region ? (<p>Region: <span>{country.region}</span></p>) : null}
+                                <p>Region: {country.region ? (<span>{country.region}</span>) : (<i>No informations found</i>)}</p>
 
-                            {country.capital ? (<p>Capital: <span>{country.capital}</span></p>) : null}
-                        </section>
+                                <p>Capital: {country.capital ? (<span>{country.capital}</span>) : (<i>No informations found</i>)}</p>
+                            </section>
                         </Link>
                     </section>   
                         
@@ -144,7 +144,10 @@ class Countries extends Component {
                                 return alt;
                             }
                         }
-                        const checkIfNameMatches = nameExists || findAlpha2Code || findAlpha3Code || checkIfAltSpellingsMatch();
+
+                        const findNativeName = country.nativeName.trim().toLowerCase().includes(stateName);
+
+                        const checkIfNameMatches = nameExists || findAlpha2Code || findAlpha3Code || checkIfAltSpellingsMatch() || findNativeName;
 
                         const checkIfRegionMatches = this.state.region === country.region;
 

@@ -28,7 +28,10 @@ class Main extends Component {
                     <Route exact path='/home' component={() => <Countries countries={this.props.countries.countries}
                     isLoading={this.props.countries.isLoading}
                     errMess={this.props.countries.errMess} />} />
-                    <Route path='/home/:alpha3Code' component={({match}) => <Details country={this.props.countries.countries.filter(country => match.params.alpha3Code === country.alpha3Code)[0]} />} />
+                    <Route path='/home/:alpha3Code' component={({match}) => <Details country={this.props.countries.countries.filter(country => match.params.alpha3Code === country.alpha3Code)[0]} 
+                    countries={this.props.countries.countries}
+                    isLoading={this.props.countries.isLoading}
+                    errMess={this.props.countries.errMess} />} />
                     <Redirect to='/home' />
                 </Switch>
             </>
