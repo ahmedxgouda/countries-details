@@ -8,8 +8,9 @@ const RenderCountry = ({countries, state}) => {
     return (
         <>
             {countries.length === 0 ? (
-                <p>Sorry, no countries found match <strong>{state.name}</strong> {state.region !== '' ? (<>in {state.region}</>) : null}</p>
+                <p>Sorry, no countries found match <strong>{state.name}</strong> {state.region !== '' && state.name.trim().toLowerCase() !== 'israel' ? (<>in {state.region}</>) : null}</p>
             ) : null}
+            {state.name.trim().toLowerCase() === 'israel' ? (<p>Did you mean <Link to="/home/PSE"><strong>Palestine?</strong></Link></p>) : null}
             {countries.slice(state.offset, state.offset + state.perPage).map(country => (
                 
                     <section className="box" key={country.name}>

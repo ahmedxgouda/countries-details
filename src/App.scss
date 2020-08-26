@@ -23,10 +23,15 @@ body {
 
     &.container-no-match {
         display: flex;
-
+        flex-direction: column;
         p {
             color: var(--text);
             font-size: 25px;
+            margin: 0 auto;
+            
+            a {
+                color: var(--text);
+            }
         }
     }
 }
