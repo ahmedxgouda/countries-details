@@ -34,7 +34,7 @@ class Header extends Component {
             root.style.setProperty('--text', 'hsl(200, 15%, 8%)');
             root.style.setProperty('--btn', '#A0C1B9');
             root.style.setProperty('--input', 'hsl(0, 0%, 52%)');
-            root.style.setProperty('--focused', '#C9E4CA');
+            root.style.setProperty('--focused', '#F5F5F5');
         }
     }
 

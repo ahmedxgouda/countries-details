@@ -20,7 +20,7 @@ const Filters = ({changeName, isOpen, handleOpen, changeRegion, region}) => {
                         {region === '' ? (<span>Filter by Region</span>) : (<span>{region}</span>)}
                         <FontAwesomeIcon icon={['fas', 'angle-down']} />
                     </section>
-                    <section className="list" style={{transform: isOpen ? 'scaleY(1)' : 'scaleY(0)'}}>
+                    <section className="list" style={{transform: isOpen ? 'scale(1, 1)' : 'scale(0, 0)'}}>
                         <ul>
                             {region !== '' ? (<li onClick={() => {
                                 handleOpen();

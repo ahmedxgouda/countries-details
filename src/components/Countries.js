@@ -126,7 +126,6 @@ class Countries extends Component {
                     errMess={this.props.errMess}
                     countries={this.props.countries.filter(country => {
                         const stateName =  this.state.name.trim().toLowerCase();
-                        // const stateRegion = this.state.region.toLowerCase();
                         const countryName = country.name.trim().toLowerCase();
 
                         const nameNotExist = this.state.name === '';
@@ -136,8 +135,15 @@ class Countries extends Component {
 
                         const findAlpha2Code = stateName === country.alpha2Code.trim().toLowerCase();
                         const findAlpha3Code = stateName === country.alpha3Code.trim().toLowerCase();
+                        
+                        const findAltSpellings = country.altSpellings.filter(alt => stateName.length > 4 ? alt.trim().toLowerCase().includes(stateName) : alt.trim().toLowerCase() === stateName);
 
-                        const checkIfNameMatches = nameExists || findAlpha2Code || findAlpha3Code;
+                        const checkIfAltSpellingsMatch = () => {
+                            for (let alt of findAltSpellings) {
+                                return alt;
+                            }
+                        }
+                        const checkIfNameMatches = nameExists || findAlpha2Code || findAlpha3Code || checkIfAltSpellingsMatch();
 
                         const checkIfRegionMatches = this.state.region === country.region;
 

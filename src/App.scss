@@ -130,10 +130,14 @@ body {
 
     li {
         padding: 17px;
-        background: var(--btn);
+        background: var(--elements);
         box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.1);
         transition: background-color 0.3s;
         margin-top: 5px;
+
+        &:not(.active):hover {
+            background: var(--focused);
+        }
     }
 
     a {        
@@ -152,7 +156,7 @@ body {
     .active {
         background: var(--text);
         a {
-            color: var(--btn);
+            color: var(--elements);
         }
     }
 }
@@ -240,8 +244,8 @@ body {
             background: var(--elements);
             border-radius: 5px;
             box-shadow: inherit;
-            transform-origin: center top;
-            transition: transform 0.3s;
+            transform-origin: top right;
+            transition: transform 0.2s;
 
             ul {
                 padding: 0;
