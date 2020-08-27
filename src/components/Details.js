@@ -29,15 +29,15 @@ const tranistions = {
 
 const RenderDetails = ({country, countries}) => {
     return (
-        <section className="box details" key={country.alpha3Code}>
-            <section className="img" style={{backgroundImage: `url(${country.flag})`}}>            </section>
-            <section className="text">
-                <section className="info">
-                    <section>
+        <div className="box details" key={country.alpha3Code}>
+            <div className="img" style={{backgroundImage: `url(${country.flag})`}} />
+            <div className="text">
+                <div className="info">
+                    <div>
                         <h2>{country.name}</h2>
-                    </section>
-                    <section className="main">
-                        <section>
+                    </div>
+                    <div className="main">
+                        <div>
                             <p>Native Name: {country.nativeName ? (<span>{country.nativeName}</span>) : (<i>No informations found</i>)}</p>
 
                             <p>Population: {country.population ? (<span>{country.population.toLocaleString()}</span>) : (<i>No informations found</i>)}</p>
@@ -47,30 +47,30 @@ const RenderDetails = ({country, countries}) => {
                             <p>Sub Region: {country.subregion ? (<span>{country.subregion}</span>) : (<i>No informations found</i>)}</p>
 
                             <p>Capital: {country.capital ? (<span>{country.capital}</span>) : (<i>No informations found</i>)}</p>
-                        </section>
-                        <section className="other-info">
+                        </div>
+                        <div className="other-info">
                             <p>Top Level Domain: {country.topLevelDomain.length !== 0 ? country.topLevelDomain.map((domain, index) => (<span key={Math.random()}>{(index ? ', ' : '') + domain}</span>)) : (<i>No informations found</i>)}</p>
 
                             <p>Currencies: {country.currencies.length !== 0  ? country.currencies.map((curr, index) => (<span key={Math.random()}>{(index ? ', ' : '') + curr.name}</span>)) : (<i>No informations found</i>)}</p>
 
                             <p>Languages: {country.languages.length !== 0  ? country.languages.map((lang, index) => (<span key={Math.random()}>{(index ? ', ' : '') + lang.name} 
                             </span>)) : (<i>No informations found</i>)}</p>
-                        </section>
-                    </section>
-                </section>
-                <section className="borders">
+                        </div>
+                    </div>
+                </div>
+                <div className="borders">
                     <p>Border Countries: {country.borders.length !== 0  ? country.borders.map(border => countries.filter(country => country.alpha3Code === border).map(country => (<Link to={`/home/${country.alpha3Code}`} key={country.alpha3Code}><span>{country.name} </span></Link>))) : (<i>No informations found</i>)}</p>
-                </section>
-            </section>
-        </section>
+                </div>
+            </div>
+        </div>
     );
 }
 
 const RenderBtn = () => {
     return (
-        <section className="filters" style={{position: 'relative', margin: '0 auto 0 0'}}>
+        <div className="filters" style={{position: 'relative', margin: '0 auto 0 0'}}>
             <Link to="/home" className='btn'><FontAwesomeIcon style={{position: 'absolute', top: '10px', left: '10px'}} icon={['fas', 'arrow-left']} /> Back</Link>
-        </section>
+        </div>
     );
 }
 
@@ -89,17 +89,17 @@ class Details extends Component {
 
     render() {
         if (this.props.country !== undefined) return (
-            <motion.section variants={variants} initial="initial" animate="in"
+            <motion.div variants={variants} initial="initial" animate="in"
             exit="out" 
             transition={tranistions} 
             style={{overflow: 'hidden'}}>
-                <section className="container" style={{display: "flex", padding: "3% 5% 20px 5%"}}>
+                <div className="container" style={{display: "flex", padding: "3% 5% 20px 5%"}}>
                     <RenderBtn />
-                </section>
-                <section className="container" style={{display: "block"}}>
+                </div>
+                <div className="container" style={{display: "block"}}>
                     <RenderDetails country={this.props.country} countries={this.props.countries} />
-                </section>
-            </motion.section>
+                </div>
+            </motion.div>
         );
 
         else if (this.props.isLoading) return (

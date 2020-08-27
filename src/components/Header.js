@@ -58,7 +58,7 @@ class Header extends Component {
     render() {
         return (
             <header>
-                <section className="header">
+                <div className="header">
                     <h2>Where in the world?</h2>
                     <label>
                         {this.state.checked ? (
@@ -73,7 +73,7 @@ class Header extends Component {
                         
                         <input type="checkbox" onClick={this.handleCheck} />
                     </label>
-                </section>
+                </div>
             </header>
         );
     }

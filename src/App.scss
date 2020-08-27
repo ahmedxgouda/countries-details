@@ -134,7 +134,7 @@ body {
     margin: 0 auto;
     align-self: center;
     
-    section {
+    div {
         display: flex;
         justify-content: space-around;
     }
@@ -333,7 +333,7 @@ a {
 .info .main {
     display: flex;
 
-    & section:first-of-type {
+    & div:first-of-type {
         margin: 0 50px 50px 0;
     }
 }

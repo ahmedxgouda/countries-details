@@ -33,21 +33,21 @@ const RenderCountry = ({countries, state}) => {
             {state.name.trim().toLowerCase() === 'israel' ? (<p>Did you mean <Link to="/home/PSE"><strong>Palestine?</strong></Link></p>) : null}
             {countries.slice(state.offset, state.offset + state.perPage).map(country => (
                 
-                    <motion.section className="box" key={country.name}>
+                    <motion.div className="box" key={country.name}>
                         <Link to={`/home/${country.alpha3Code}`}>
-                            <section className="img" style={{backgroundImage: `url(${country.flag})`}}>
-                            </section>
+                            <div className="img" style={{backgroundImage: `url(${country.flag})`}}>
+                            </div>
                             <p className="click">Click to view details about <strong>{country.name}</strong></p>
-                            <section className="text">
+                            <div className="text">
                                 <h3>{country.name}</h3>
                                 <p>Population: {country.population ? (<span>{country.population.toLocaleString()}</span>) : (<i>No informations found</i>)}</p>
 
                                 <p>Region: {country.region ? (<span>{country.region}</span>) : (<i>No informations found</i>)}</p>
 
                                 <p>Capital: {country.capital ? (<span>{country.capital}</span>) : (<i>No informations found</i>)}</p>
-                            </section>
+                            </div>
                         </Link>
-                    </motion.section>   
+                    </motion.div>   
                         
             ))}
         </>
@@ -65,17 +65,17 @@ const List = (props) => {
         <p>props.errMess</p>
     );
     else return (
-        <motion.section variants={containerVariants} initial="initial" animate="in" exit="out" transition={tranistions}>
+        <motion.div variants={containerVariants} initial="initial" animate="in" exit="out" transition={tranistions}>
             <Filters changeName={props.changeName} 
             changeRegion={props.changeRegion}
             region={props.region}
             isOpen={props.isOpen} 
             handleOpen={props.handleOpen} />
-            <section className={`container${props.countries.length === 0 ? ' container-no-match' : ''}`}>
+            <div className={`container${props.countries.length === 0 ? ' container-no-match' : ''}`}>
                 <RenderCountry countries={props.countries} state={props.state} />
-            </section>
+            </div>
             {props.countries.length > 12 ? (
-                <section className="container container-pagination">
+                <div className="container container-pagination">
                     <ReactPaginate previousLabel={'Prev'}
                         nextLabel={'Next'}
                         breakLabel={'...'}
@@ -88,10 +88,10 @@ const List = (props) => {
                         containerClassName={'pagination'}
                         activeClassName={'active'}
                     />
-                </section>
+                </div>
             ) : null}
             
-        </motion.section>
+        </motion.div>
     );
 }
 
