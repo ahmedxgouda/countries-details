@@ -1,6 +1,7 @@
 body {
     background: var(--bg);
-    font-family: 'Nunito Sans', sans-serif
+    font-family: 'Nunito Sans', sans-serif;
+    overflow-x: hidden;
 }
 
 .container {
@@ -41,7 +42,7 @@ body {
     flex-wrap: wrap;
     padding: 0.5% 5%;
     background: var(--elements);
-    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow);
     color: var(--text);
     transition: color 0.3s, background-color 0.3s;
 
@@ -61,38 +62,63 @@ body {
     flex-direction: column;
     background: var(--elements);
     border-radius: 10px;
-    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow);
     transition: background-color 0.3s;
 
-        .text {
-            padding: 4% 2% 15% 10%;
+    .text {
+        padding: 4% 2% 15% 10%;
+        color: var(--text);
+        transition: color 0.3s;
+
+        h3 {
+            margin: 5px 0 15px 0;
+        }
+
+        p:not(.info p) {
+            font-weight: 600;
+            margin: 0;
+            span {
+                font-weight: 300;
+            }
+        }
+    }
+
+    .img {
+        display: flex;
+        width: 100%;
+        height: 200px;
+        background-size: cover;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        background-repeat: no-repeat;
+        background-position: center;
+        transition: opacity 0.3s;
+    }
+    
+    a {
+        position: relative;
+
+        .click {
+            position: absolute;
             color: var(--text);
-            transition: color 0.3s;
-
-            h3 {
-                margin: 5px 0 15px 0;
-            }
-
-            p:not(.info p) {
-                font-weight: 600;
-                margin: 0;
-                span {
-                    font-weight: 300;
-                }
-            }
+            top: 55px;
+            font-weight: 600;
+            padding: 0 10px;
+            opacity: 0;
+            font-size: 20px;
         }
 
-        .img {
-            display: flex;
-            width: 100%;
-            height: 200px;
-            background-size: cover;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-            background-repeat: no-repeat;
-            background-position: center;
-        }
+        &:hover {
 
+            .img {
+                opacity: 0.3;
+            }
+
+            .click {
+                opacity: 1;
+            }
+        }
+    }
 }
 
 // Loading component
@@ -136,7 +162,7 @@ body {
     li {
         padding: 17px;
         background: var(--elements);
-        box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.1);
+        box-shadow: var(--shadow);
         transition: background-color 0.3s;
         margin-top: 5px;
 
@@ -201,7 +227,7 @@ body {
         width: 100%;
         font-size: 14px;
         transition: color 0.3s, background-color 0.3s, border-color 0.1s ease-in;
-        box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+        box-shadow: var(--shadow);
 
         &::placeholder {
             color: var(--input);
@@ -220,7 +246,7 @@ body {
         border-radius: 6px;
         display: flex;
         width: 250px;
-        box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+        box-shadow: var(--shadow);
 
         .selected {
             align-self: center;
@@ -251,6 +277,7 @@ body {
             box-shadow: inherit;
             transform-origin: top right;
             transition: transform 0.2s;
+            z-index: 5000;
 
             ul {
                 padding: 0;
@@ -280,10 +307,11 @@ a {
     background: inherit;
     box-shadow: inherit;
     display: grid;
-    grid-template-columns: 1.2fr 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-areas: 
         'img text';
     grid-gap: 2rem;
+    font-size: 16px;
 
     .img {
         display: block;
@@ -304,7 +332,6 @@ a {
 
 .info .main {
     display: flex;
-    flex-wrap: wrap;
 
     & section:first-of-type {
         margin: 0 50px 50px 0;
@@ -317,6 +344,7 @@ a {
 
 .borders span {
     font-weight: 600 !important;
+    color: var(--input);
 }
 
 .borders a {
@@ -326,7 +354,7 @@ a {
     margin: 5px;
     border-radius: 3px;
     display: inline-block;
-    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow);
     transition: background-color 0.3s, color 0.3s;
 
     &:hover {
@@ -336,16 +364,12 @@ a {
 
 .btn {
     background: var(--elements);
-    color: var(--text);
+    color: var(--input);
     padding: 7px 60px;
     border-radius: 3px;
     font-weight: 600;
-    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow);
     transition: color 0.3s, background-color 0.3s;
-
-    path {
-        fill: var(--text);
-    }
 
     &:hover {
         background: var(--focused);
@@ -396,5 +420,10 @@ a {
 @media screen and (min-width: 675px) and (max-width: 1125px) {
     .box.details .img {
         height: 57%;
+        align-self: flex-start;
+    }
+
+    .info .main {
+        flex-wrap: wrap;
     }
 }

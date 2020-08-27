@@ -4,8 +4,28 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { fas, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
+import { motion } from 'framer-motion';
 
 library.add(fas, faArrowLeft);
+
+const variants = {
+    initial: {
+        x: '100vw'
+    },
+    in: {
+        x: '0'
+    },
+    out: {
+        x: '-100vw',
+        transition: {
+            ease: 'easeInOut'
+        }
+    }
+}
+
+const tranistions = {
+    transition: 'linear'
+}
 
 const RenderDetails = ({country, countries}) => {
     return (
@@ -69,14 +89,17 @@ class Details extends Component {
 
     render() {
         if (this.props.country !== undefined) return (
-            <>
+            <motion.section variants={variants} initial="initial" animate="in"
+            exit="out" 
+            transition={tranistions} 
+            style={{overflow: 'hidden'}}>
                 <section className="container" style={{display: "flex", padding: "3% 5% 20px 5%"}}>
                     <RenderBtn />
                 </section>
                 <section className="container" style={{display: "block"}}>
                     <RenderDetails country={this.props.country} countries={this.props.countries} />
                 </section>
-            </>
+            </motion.section>
         );
 
         else if (this.props.isLoading) return (

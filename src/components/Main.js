@@ -5,9 +5,12 @@ import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Countries from './Countries';
 import Details from './Details';
 import Header from './Header';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const mapStateToProps = state => ({
-    countries: state.countries
+    countries: state.countries,
+    isLoading: state.isLoading,
+    errMess: state.errMess
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -24,16 +27,23 @@ class Main extends Component {
         return (
             <>
                 <Header />
-                <Switch>
-                    <Route exact path='/home' component={() => <Countries countries={this.props.countries.countries}
-                    isLoading={this.props.countries.isLoading}
-                    errMess={this.props.countries.errMess} />} />
-                    <Route path='/home/:alpha3Code' component={({match}) => <Details country={this.props.countries.countries.filter(country => match.params.alpha3Code === country.alpha3Code)[0]} 
-                    countries={this.props.countries.countries}
-                    isLoading={this.props.countries.isLoading}
-                    errMess={this.props.countries.errMess} />} />
-                    <Redirect to='/home' />
-                </Switch>
+                <AnimatePresence exitBeforeEnter>
+                    <Switch location={this.props.location} key={this.props.location.pathname} >
+                        <Route exact path='/home' component={() => <Countries countries={this.props.countries}
+                        isLoading={this.props.isLoading}
+                        errMess={this.props.errMess} />}
+                         />
+
+                        <Route path='/home/:alpha3Code' component={({match}) =>
+                            <Details country={this.props.countries.filter(country => match.params.alpha3Code === country.alpha3Code)[0]} 
+                                countries={this.props.countries}
+                                isLoading={this.props.isLoading}
+                                errMess={this.props.errMess} />} />
+                        <motion.section exit="undefined">
+                            <Redirect to='/home' />
+                        </motion.section>
+                    </Switch>
+                </AnimatePresence>
             </>
         );
     }

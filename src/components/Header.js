@@ -24,7 +24,7 @@ class Header extends Component {
             root.style.setProperty('--bg', 'hsl(207, 26%, 17%)');
             root.style.setProperty('--elements', 'hsl(209, 23%, 22%)');
             root.style.setProperty('--text', 'hsl(0, 0%, 100%)');
-            root.style.setProperty('--btn', '#17183B');
+            root.style.setProperty('--shadow', '1px 1px 8px rgba(0, 0, 0, 0.2)');
             root.style.setProperty('--input', 'hsl(0, 0%, 100%)');
             root.style.setProperty('--focused', '#3E505B');
 
@@ -32,7 +32,7 @@ class Header extends Component {
             root.style.setProperty('--bg', 'hsl(0, 0%, 98%)');
             root.style.setProperty('--elements', 'hsl(0, 0%, 100%)');
             root.style.setProperty('--text', 'hsl(200, 15%, 8%)');
-            root.style.setProperty('--btn', '#A0C1B9');
+            root.style.setProperty('--shadow', '1px 1px 8px rgba(0, 0, 0, 0.1)');
             root.style.setProperty('--input', 'hsl(0, 0%, 52%)');
             root.style.setProperty('--focused', '#F5F5F5');
         }
