@@ -62,7 +62,7 @@ const List = (props) => {
         <Loading />
     );
     else if (props.errMess) return (
-        <p>props.errMess</p>
+        <p>{props.errMess}</p>
     );
     else return (
         <motion.div variants={containerVariants} initial="initial" animate="in" exit="out" transition={tranistions}>

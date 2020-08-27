@@ -51,7 +51,7 @@ const RenderDetails = ({country, countries}) => {
                         <div className="other-info">
                             <p>Top Level Domain: {country.topLevelDomain.length !== 0 ? country.topLevelDomain.map((domain, index) => (<span key={Math.random()}>{(index ? ', ' : '') + domain}</span>)) : (<i>No informations found</i>)}</p>
 
-                            <p>Currencies: {country.currencies.length !== 0  ? country.currencies.map((curr, index) => (<span key={Math.random()}>{(index ? ', ' : '') + curr.name}</span>)) : (<i>No informations found</i>)}</p>
+                            <p>Currencies: {country.currencies.length !== 0  ? country.currencies.map((curr, index) => (<span key={Math.random()}>{(index ? ', ' : '') + (curr.name.includes('Israel') ? curr.name = 'Sheqel' : curr.name)}</span>)) : (<i>No informations found</i>)}</p>
 
                             <p>Languages: {country.languages.length !== 0  ? country.languages.map((lang, index) => (<span key={Math.random()}>{(index ? ', ' : '') + lang.name} 
                             </span>)) : (<i>No informations found</i>)}</p>

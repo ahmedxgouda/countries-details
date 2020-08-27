@@ -19,9 +19,9 @@ const loadingCircleTransition = {
 
 const Loading = () => {
     return (
-        <section className="container container-loading">
-            <motion.section className="loading">
-                <motion.section>
+        <div className="container container-loading">
+            <motion.div className="loading">
+                <motion.div>
                     <motion.span className="loading-circle" variants={loadingCircleVariants} 
                     initial="start"
                     animate="end"
@@ -36,9 +36,9 @@ const Loading = () => {
                     initial="start"
                     animate="end"
                     transition={loadingCircleTransition} />
-                </motion.section>
-            </motion.section>
-        </section>
+                </motion.div>
+            </motion.div>
+        </div>
     );
 }
 
