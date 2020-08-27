@@ -204,6 +204,12 @@ body {
         width: 400px;
         margin: 0 10px 0 0;
 
+        label {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
         svg {
             position: absolute;
             top: 17px;
