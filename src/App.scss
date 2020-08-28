@@ -1,7 +1,10 @@
 body {
     background: var(--bg);
     font-family: 'Nunito Sans', sans-serif;
-    overflow-x: hidden;
+}
+
+#root {
+    overflow: hidden;
 }
 
 .container {

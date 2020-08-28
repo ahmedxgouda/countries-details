@@ -4,8 +4,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faMoon, faLightbulb } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 
-library.add(far, faMoon);
-library.add(far, faLightbulb);
+library.add(far, faMoon, faLightbulb);
 
 class Header extends Component {
 

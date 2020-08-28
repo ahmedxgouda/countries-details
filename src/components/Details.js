@@ -91,8 +91,7 @@ class Details extends Component {
         if (this.props.country !== undefined) return (
             <motion.div variants={variants} initial="initial" animate="in"
             exit="out" 
-            transition={tranistions} 
-            style={{overflow: 'hidden'}}>
+            transition={tranistions}>
                 <div className="container" style={{display: "flex", padding: "3% 5% 20px 5%"}}>
                     <RenderBtn />
                 </div>
