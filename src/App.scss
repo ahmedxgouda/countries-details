@@ -303,6 +303,21 @@ body {
     }
 }
 
+button {
+    background: inherit;
+    border: none;
+    font-size: inherit;
+    color: var(--text);
+    padding: 0;
+    cursor: pointer;
+    font-family: inherit;
+    outline: none;
+    transition: background-color 0.3s, color 0.3s;
+
+    &:focus {
+        outline: 2px dashed var(--text);
+    }
+}
 // Details page
 
 a {

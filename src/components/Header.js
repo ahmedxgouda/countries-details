@@ -60,7 +60,7 @@ class Header extends Component {
             <header>
                 <div className="header">
                     <h2>Where in the world?</h2>
-                    <label>
+                    <label htmlFor="theme-switcher">
                         {this.state.checked ? (
                             <>
                                 <FontAwesomeIcon icon={['far', 'lightbulb']} /> <span>Light Mode</span>
@@ -71,7 +71,7 @@ class Header extends Component {
                             </>
                         )}
                         
-                        <input type="checkbox" onClick={this.handleCheck} />
+                        <input type="checkbox" onClick={this.handleCheck} id="theme-switcher" />
                     </label>
                 </div>
             </header>
