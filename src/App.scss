@@ -124,6 +124,10 @@ body {
     }
 }
 
+a:focus {
+    outline: 2px dashed var(--text);
+}
+
 // Loading component
 
 .container-loading {
@@ -168,23 +172,19 @@ body {
         box-shadow: var(--shadow);
         transition: background-color 0.3s;
         margin-top: 5px;
+        outline: none;
 
         &:not(.active):hover {
             background: var(--focused);
         }
     }
 
-    a {        
-        
+    a {
         color: var(--text);
         padding: 15px 5px;
         cursor: pointer;
         user-select: none;
         transition: color 0.3s;
-        
-        &:focus {
-            outline: none;
-        }
     }
 
     .active {
@@ -307,7 +307,7 @@ body {
 }
 
 button {
-    background: inherit;
+    background: none;
     border: none;
     font-size: inherit;
     color: var(--text);
