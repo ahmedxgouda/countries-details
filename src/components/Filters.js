@@ -8,7 +8,7 @@ library.add(fas, faSearch, faAngleDown);
 const Filters = ({changeName, isOpen, handleOpen, changeRegion, region}) => {
     const regions = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
 
-    useEffect(() => {
+    const transList = () => {
         const list = document.querySelector('.select .list');
         if (isOpen) {
             list.style.display = 'block';
@@ -18,8 +18,12 @@ const Filters = ({changeName, isOpen, handleOpen, changeRegion, region}) => {
             list.style.transform = 'scale(0, 0)';
             setTimeout(() => list.style.display = 'none', 200);
         }
-    })
-    isOpen ? document.addEventListener('click', handleOpen): document.removeEventListener('click', handleOpen);
+    }
+
+    isOpen ? document.addEventListener('click', handleOpen) : document.removeEventListener('click', handleOpen);
+
+    useEffect(transList);
+    
     return (
         <div className="container container-filter">
             <div className="filters">
