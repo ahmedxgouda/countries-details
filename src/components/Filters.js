@@ -12,7 +12,7 @@ const Filters = ({changeName, isOpen, handleOpen, changeRegion, region}) => {
         const list = document.querySelector('.select .list');
         if (isOpen) {
             list.style.display = 'block';
-            setTimeout(() => list.style.transform = 'scale(1, 1)', 10);
+            setTimeout(() => list.style.transform = 'scale(1, 1)', 15);
         }
         else {
             list.style.transform = 'scale(0, 0)';
