@@ -20,20 +20,12 @@ class Header extends Component {
 
         const root = document.documentElement;
         if (element.checked) {
-            root.style.setProperty('--bg', 'hsl(207, 26%, 17%)');
-            root.style.setProperty('--elements', 'hsl(209, 23%, 22%)');
-            root.style.setProperty('--text', 'hsl(0, 0%, 100%)');
-            root.style.setProperty('--shadow', '1px 1px 8px rgba(0, 0, 0, 0.2)');
-            root.style.setProperty('--input', 'hsl(0, 0%, 100%)');
-            root.style.setProperty('--focused', '#3E505B');
+            root.classList.remove('light-theme');
+            root.classList.add('dark-theme');
 
         } else {
-            root.style.setProperty('--bg', 'hsl(0, 0%, 98%)');
-            root.style.setProperty('--elements', 'hsl(0, 0%, 100%)');
-            root.style.setProperty('--text', 'hsl(200, 15%, 8%)');
-            root.style.setProperty('--shadow', '1px 1px 8px rgba(0, 0, 0, 0.1)');
-            root.style.setProperty('--input', 'hsl(0, 0%, 52%)');
-            root.style.setProperty('--focused', '#F5F5F5');
+            root.classList.remove('dark-theme');
+            root.classList.add('light-theme');
         }
     }
 
@@ -54,19 +46,12 @@ class Header extends Component {
         });
     }
 
-    handleFocus = (e) => {
-        if (e.currentTarget.focus) document.querySelector('label[for=theme-switcher]').style.outline = '2px dashed var(--text)';
-    }
-
-    handleBlur = (e) => {
-        if (e.currentTarget.blur) document.querySelector('label[for=theme-switcher]').style.outline = 'none'
-    }
-
     render() {
         return (
             <header>
                 <div className="header">
                     <h2>Where in the world?</h2>
+                    <input type="checkbox" onClick={this.handleCheck} id="theme-switcher" name="theme-switcher" />
                     <label htmlFor="theme-switcher">
                         {this.state.checked ? (
                             <>
@@ -77,8 +62,6 @@ class Header extends Component {
                                 <FontAwesomeIcon icon={['far', 'moon']} /> <span>Dark Mode</span>
                             </>
                         )}
-                        
-                        <input type="checkbox" onClick={this.handleCheck} id="theme-switcher" name="theme-switcher" onFocus={this.handleFocus} onBlur={this.handleBlur} />
                     </label>
                 </div>
             </header>
