@@ -21,6 +21,10 @@ body {
     font-family: 'Nunito Sans', sans-serif;
 }
 
+#root {
+    overflow: hidden;
+}
+
 .container {
     --grid-min-size: 16rem;
     padding: 1% 5%;
