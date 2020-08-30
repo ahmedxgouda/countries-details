@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import ReactPaginate from 'react-paginate';
 import Loading from './Loading';
 import Filters from './Filters';
@@ -25,6 +25,12 @@ const tranistions = {
 }
 
 const RenderCountry = ({countries, state}) => {
+    useEffect(() => {
+        const root = document.querySelector('#root');
+
+        if (countries.length === 0) root.style.overflow = 'initial';
+        else root.style.overflow = 'hidden';
+    })
     return (
         <>
             {countries.length === 0 ? (
@@ -32,23 +38,21 @@ const RenderCountry = ({countries, state}) => {
             ) : null}
             {state.name.trim().toLowerCase() === 'israel' ? (<p>Did you mean <Link to="/home/PSE"><strong>Palestine?</strong></Link></p>) : null}
             {countries.slice(state.offset, state.offset + state.perPage).map(country => (
-                
-                    <motion.div className="box" key={country.name}>
-                        <Link to={`/home/${country.alpha3Code}`}>
-                            <div className="img" style={{backgroundImage: `url(${country.flag})`}}>
-                            </div>
-                            <p className="click">Click to view details about <strong>{country.name}</strong></p>
-                            <div className="text">
-                                <h3>{country.name}</h3>
-                                <p>Population: {country.population ? (<span>{country.population.toLocaleString()}</span>) : (<i>No informations found</i>)}</p>
+                <div className="box" key={country.name}>
+                    <Link to={`/home/${country.alpha3Code}`}>
+                        <div className="img" style={{backgroundImage: `url(${country.flag})`}}>
+                        </div>
+                        <p className="click">Click to view details about <strong>{country.name}</strong></p>
+                        <div className="text">
+                            <h3>{country.name}</h3>
+                            <p>Population: {country.population ? (<span>{country.population.toLocaleString()}</span>) : (<i>No informations found</i>)}</p>
 
-                                <p>Region: {country.region ? (<span>{country.region}</span>) : (<i>No informations found</i>)}</p>
+                            <p>Region: {country.region ? (<span>{country.region}</span>) : (<i>No informations found</i>)}</p>
 
-                                <p>Capital: {country.capital ? (<span>{country.capital}</span>) : (<i>No informations found</i>)}</p>
-                            </div>
-                        </Link>
-                    </motion.div>   
-                        
+                            <p>Capital: {country.capital ? (<span>{country.capital}</span>) : (<i>No informations found</i>)}</p>
+                        </div>
+                    </Link>
+                </div>       
             ))}
         </>
     );
@@ -65,7 +69,7 @@ const List = (props) => {
         <p>{props.errMess}</p>
     );
     else return (
-        <motion.div variants={containerVariants} initial="initial" animate="in" exit="out" transition={tranistions}>
+        <motion.div variants={containerVariants} initial="initial" animate="in" exit="out" transition={tranistions} className="root-animation">
             <Filters changeName={props.changeName} 
             changeRegion={props.changeRegion}
             region={props.region}

@@ -54,6 +54,14 @@ class Header extends Component {
         });
     }
 
+    handleFocus = (e) => {
+        if (e.currentTarget.focus) document.querySelector('label[for=theme-switcher]').style.outline = '2px dashed var(--text)';
+    }
+
+    handleBlur = (e) => {
+        if (e.currentTarget.blur) document.querySelector('label[for=theme-switcher]').style.outline = 'none'
+    }
+
     render() {
         return (
             <header>
@@ -70,7 +78,7 @@ class Header extends Component {
                             </>
                         )}
                         
-                        <input type="checkbox" onClick={this.handleCheck} id="theme-switcher" />
+                        <input type="checkbox" onClick={this.handleCheck} id="theme-switcher" name="theme-switcher" onFocus={this.handleFocus} onBlur={this.handleBlur} />
                     </label>
                 </div>
             </header>
