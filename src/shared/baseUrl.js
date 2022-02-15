@@ -1,3 +1,3 @@
-const baseUrl = 'https://restcountries.eu/rest/v2/all';
+const baseUrl = 'https://restcountries.com/v2/all';
 
 export default baseUrl;

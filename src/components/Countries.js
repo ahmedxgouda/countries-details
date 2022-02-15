@@ -163,17 +163,17 @@ class Countries extends Component {
                     const findAlpha2Code = stateName === country.alpha2Code.trim().toLowerCase();
                     const findAlpha3Code = stateName === country.alpha3Code.trim().toLowerCase();
                     
-                    const findAltSpellings = country.altSpellings.filter(alt => stateName.length > 4 ? alt.trim().toLowerCase().includes(stateName) : alt.trim().toLowerCase() === stateName);
+                    // const findAltSpellings = country.altSpellings.filter(alt => stateName.length > 4 ? alt.trim().toLowerCase().includes(stateName) : alt.trim().toLowerCase() === stateName);
 
-                    const checkIfAltSpellingsMatch = () => {
-                        for (let alt of findAltSpellings) {
-                            return alt;
-                        }
-                    }
+                    // const checkIfAltSpellingsMatch = () => {
+                    //     for (let alt of findAltSpellings) {
+                    //         return alt;
+                    //     }
+                    // }
 
                     const findNativeName = country.nativeName.trim().toLowerCase().includes(stateName);
 
-                    const checkIfNameMatches = nameExists || findAlpha2Code || findAlpha3Code || checkIfAltSpellingsMatch() || findNativeName;
+                    const checkIfNameMatches = nameExists || findAlpha2Code || findAlpha3Code || /*checkIfAltSpellingsMatch() ||*/ findNativeName;
 
                     const checkIfRegionMatches = this.state.region === country.region;
 
