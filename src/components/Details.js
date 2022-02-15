@@ -59,7 +59,7 @@ const RenderDetails = ({country, countries}) => {
                     </div>
                 </div>
                 <div className="borders">
-                    <p>Border Countries: {country.borders.length !== 0  ? country.borders.map(border => countries.filter(country => country.alpha3Code === border).map(country => (<Link to={`/home/${country.alpha3Code}`} key={country.alpha3Code}><span>{country.name} </span></Link>))) : (<i>No informations found</i>)}</p>
+                    <p>Border Countries: {country.borders ? country.borders.map(border => countries.filter(country => country.alpha3Code === border).map(country => (<Link to={`/home/${country.alpha3Code}`} key={country.alpha3Code}><span>{country.name} </span></Link>))) : (<i>No informations found</i>)}</p>
                 </div>
             </div>
         </div>
